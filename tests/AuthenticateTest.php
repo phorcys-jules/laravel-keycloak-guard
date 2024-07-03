@@ -462,7 +462,7 @@ class AuthenticateTest extends TestCase
             $arg = $payload;
         }
 
-        $this->actingAsKeycloakUser(payload: $arg)->json('GET', '/foo/secret');
+        $this->actingAsKeycloakUser($payload, $arg)->json('GET', '/foo/secret');
 
         $this->assertEquals('test_username', Auth::user()->username);
         $token = Token::decode(request()->bearerToken(), config('keycloak.realm_public_key'), config('keycloak.leeway'), config('keycloak.token_encryption_algorithm'));
